@@ -4,7 +4,14 @@ void main() => runApp(MaterialApp(
       home: TutorialCard(),
     ));
 
-class TutorialCard extends StatelessWidget {
+class TutorialCard extends StatefulWidget {
+  @override
+  _TutorialCardState createState() => _TutorialCardState();
+}
+
+class _TutorialCardState extends State<TutorialCard> {
+  int tutorialLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +21,15 @@ class TutorialCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            tutorialLevel++;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -56,7 +72,7 @@ class TutorialCard extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              '1',
+              '$tutorialLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
